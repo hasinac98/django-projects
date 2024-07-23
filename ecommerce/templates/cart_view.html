@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="ms-5 mt-5 mb-5">
+    <div class="row text-center">
+        <div class="col-7">
+            <table class="table table-bordered">
+                <tr>
+                    <th colspan="6">Cart items</th>
+                </tr>
+                {% for i in cart %}
+                <tr>
+                    <td><img src="{{i.product.image.url}}" height="200px"></td>
+                    <td>{{i.product.name}}</td>
+                    <td>Product ID:{{i.product.id}}</td>
+                    <td>Quantity:{{i.quantity}}<b>
+                    Unit Price:{{i.product.price}}*{{i.quantity}}</b></td>
+                    <td>Subtotal:{{i.subtotal}}</td>
+                    <td>
+                        {% if i.product.stock > 0 %}
+                            <a href="{% url 'cart:add_to_cart' i.product.id %}"> <i class="fa-solid fa-circle-plus" style="color:black"></i></a><br>
+                            <a href="{% url 'cart:cart_decrement' i.product.id %}"><i class="fa-solid fa-circle-minus"></i></a><br>
+                            <a href="{% url 'cart:cart_delete' i.product.id %}"><i class="fa-solid fa-trash-can"></i></a>
+                        {% else %}
+                        <a href="{% url 'cart:cart_decrement' i.product.id %}"><i class="fa-solid fa-circle-plus"></i></a><br>
+                        <a href="{% url 'cart:cart_delete' i.product.id %}"><i class="fa-solid fa-trash-can"></i></a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-4">
+            <table class="table table-bordered ms-5">
+                <tr>
+                    <th colspan="4">Check-Out</th>
+                </tr>
+                <tr>
+                    <th colspan="6">Total-Amount : {{total}}</th>
+                </tr>
+            </table>
+            <a class="btn btn-primary" href="{% url 'cart:place_order' %}">Place Order</a><br><br>
+            <a class="btn btn-success" href="{% url 'shop:category' %}">continue-Shopping</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

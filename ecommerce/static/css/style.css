@@ -1,0 +1,23 @@
+body
+{
+background-color:#eba10e;
+color:black;
+}
+h1
+{
+color:black;
+}
+bannerimage {
+  width: 100%;
+  background-image: url(http://s30.postimg.org/x0ne0p5wx/bootsrap.png);
+  height: 405px;
+  background-color: purple;
+  background-position: center;
+}
+.navbar{
+background-color:#a39e95;
+}
+.table,th,td{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
